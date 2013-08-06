@@ -12,6 +12,7 @@ import config
 import json
 import psycopg2
 import flask
+import urllib
 
 app = flask.Flask(__name__)
 
@@ -24,9 +25,10 @@ DB = psycopg2.connect(
 @app.route("/search/<query>/")
 @app.route("/search/<query>/<int:page>")
 @app.route("/search/<query>/<int:page>/<int:limit>")
-def search(query, limit=10, page=0):
+def search(query, page=0, limit=10):
     """Return JSON formatted search results, including snippets and facets"""
 
+    query = urllib.unquote(query)
     year = flask.request.args.get('year')
     results = __get_ranked_results(query, year, limit, page)
     years = __get_year_facet(query)
@@ -45,8 +47,7 @@ def search(query, limit=10, page=0):
             'results': len(results)
         }
     })
-    response = flask.Response(response="%s" % resj, mimetype='application/json')
-    return response
+    return flask.Response(response=str(resj), mimetype='application/json')
 
 def __get_ranked_results(query, year, limit, page):
     """Simple search for terms, with optional limit and paging"""
