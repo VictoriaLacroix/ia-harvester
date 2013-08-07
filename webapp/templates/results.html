@@ -22,8 +22,9 @@
 {%     set url = url ~ "&amp;collection=" ~ request.args.get('collection') %}
 {% endif %}
 {{ url }}
-{% endmacro %}
+{%- endmacro %}
 {% block title %} - Search Results{% endblock %}
+{% block heading %} - Search Results{% endblock %}
 {% block content %}
 {{ super() }}
 <script>

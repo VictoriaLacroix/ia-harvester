@@ -14,7 +14,7 @@ import os
 import urllib, urllib2
 from jinja2 import Environment, FileSystemLoader
 
-env = Environment(loader=FileSystemLoader(searchpath="%s/templates" % os.path.dirname((os.path.realpath(__file__)))))
+env = Environment(loader=FileSystemLoader(searchpath="%s/templates" % os.path.dirname((os.path.realpath(__file__)))), trim_blocks=True)
 app = flask.Flask(__name__)
 
 @app.route("/")

@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% block head %}
-    <title> Laurentian Student Newspapers {% block title %}{% endblock %}</title>
+    <title>Laurentian Student Newspapers{% block title %}{% endblock %}</title>
     <link href="http://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/static/style.css" type="text/css" />
     {% endblock %}
 </head>
 <body>
+<h1>Laurentian Student Newspapers{% block heading %}{% endblock %}</h1>
 {% block content %}{% endblock %}
 </body>
 </html>
